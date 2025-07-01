@@ -1,5 +1,5 @@
 def quarter_of_year(month):
-    if 12 <= month <= 2:
+    if 1 <= month <= 2 or month == 12:
         return "зима"
     elif 3 <= month <= 5:
         return "весна"
