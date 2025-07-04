@@ -1,0 +1,6 @@
+pytest
+:
+pytest==8.4.1
+
+pip freeze > requirements.txt
+
