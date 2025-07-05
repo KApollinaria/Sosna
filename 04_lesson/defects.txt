@@ -1,0 +1,65 @@
+Идентификационный код: test_contains_negative[123abc-\u042b-False]
+Тесты для contains - assert False
+
+input_str = '123abc', symbol = 'Ы', expected = 'False'
+
+    @pytest.mark.parametrize("input_str, symbol,expected", [
+        ("123abc", "Ы", "False"),
+        ("", "d", "False"),
+        ("Skypr", "1", "False"),
+    ])
+    def test_contains_negative(input_str, symbol, expected):
+        res = False
+        try:
+            res = input_str.index(symbol) > -1
+        except ValueError:
+            pass
+
+       assert res
+Ожидаемый результат: passed
+Фактический результат: E       assert False
+04_lesson\test_string_utils.py:80: AssertionError
+________________________________
+Идентификационный код: test_contains_negative[-d-False] 
+Тесты для contains - assert False
+
+input_str = '', symbol = 'd', expected = 'False'
+
+    @pytest.mark.parametrize("input_str, symbol,expected", [
+        ("123abc", "Ы", "False"),
+        ("", "d", "False"),
+        ("Skypr", "1", "False"),
+    ])
+    def test_contains_negative(input_str, symbol, expected):
+        res = False
+        try:
+            res = input_str.index(symbol) > -1
+        except ValueError:
+            pass
+
+       assert res
+Ожидаемый результат: passed
+Фактический результат: E       assert False
+04_lesson\test_string_utils.py:80: AssertionError
+________________________________
+Идентификационный код: test_contains_negative[Skypr-1-False]
+Тесты для contains - assert False
+
+input_str = 'Skypr', symbol = '1', expected = 'False'
+
+    @pytest.mark.parametrize("input_str, symbol,expected", [
+        ("123abc", "Ы", "False"),
+        ("", "d", "False"),
+        ("Skypr", "1", "False"),
+    ])
+    def test_contains_negative(input_str, symbol, expected):
+        res = False
+        try:
+            res = input_str.index(symbol) > -1
+        except ValueError:
+            pass
+
+       assert res
+Ожидаемый результат: passed
+Фактический результат: E       assert False
+04_lesson\test_string_utils.py:80: AssertionError
