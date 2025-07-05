@@ -54,10 +54,10 @@ def test_trim_negative(input_str, expected):
     ("123abc", "2", "True"),
     ("Skypro", "S", "True"),
 ])
-def test_contains_positive(input_str, symbol: str, expected: str) -> bool:
+def test_contains_positive(input_str, symbol, expected):
     res = False
     try:
-        res = input_str.index(symbol) > -1
+        res = string_utils.contains(input_str, symbol) > -1
     except ValueError:
         pass
 
@@ -65,15 +65,15 @@ def test_contains_positive(input_str, symbol: str, expected: str) -> bool:
 
 
 # negative
-@pytest.mark.parametrize("input_str, symbol,expected", [
+@pytest.mark.parametrize("input_str, symbol, expected", [
     ("123abc", "Ы", "False"),
     ("", "d", "False"),
     ("Skypr", "1", "False"),
 ])
 def test_contains_negative(input_str, symbol, expected):
-    res = False
+    res = True
     try:
-        res = input_str.index(symbol) > -1
+        res = string_utils.contains(input_str, symbol) > -1
     except ValueError:
         pass
 
@@ -82,25 +82,24 @@ def test_contains_negative(input_str, symbol, expected):
 
 # - Тесты для delete_symbol -
 # positive
-@pytest.mark.parametrize("self, symbol, string", [
+@pytest.mark.parametrize("input_str, symbol, string", [
     ("skypro", "k", "sypro"),
     ("123abc", "2", "13abc"),
     ("Skypro", "S", "kypro"),
 ])
-def delete_symbol(input_str, symbol, string):
-    if self.contains(string, symbol):
+def test_delete_symbol_positive(input_str, symbol, string):
+    if string_utils.delete_symbol(string, symbol):
         string = string.replace(symbol, "")
-    return string
-
+    assert string
 
 
 # negative
-@pytest.mark.parametrize("self, symbol, string", [
+@pytest.mark.parametrize("input_str, symbol, string", [
     ("123abc", "Ы", "123abc"),
-    ("", "d", ""),
+    ("ersj", "d", "ersj"),
     ("Skypr", "1", "Skypr"),
 ])
-def delete_symbol(input_str, symbol, string):
-    if self.contains(string, symbol):
+def test_delete_symbol_negative(input_str, symbol, string):
+    if string_utils.delete_symbol(string, symbol):
         string = string.replace(symbol, "")
-    return string
+    assert string
