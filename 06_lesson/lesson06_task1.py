@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-from seleniun.webdriver.chrome.by import By
+from selenium.webdriver.chrome.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -18,8 +18,10 @@ content = WebDriverWait(driver, 20).until(
     EC.presence_of_element_located((By.CSS_SELECTOR, 'p.bg-success'))
 )
 
-text = green_label.text
+text = content.text
+
 
 print(text)
 
-driver.quit
+
+driver.quit()
