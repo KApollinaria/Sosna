@@ -1,0 +1,7 @@
+pytest
+:
+pytest==8.4.1
+
+pip freeze > requirements.txt
+
+selenium==4.34.0
