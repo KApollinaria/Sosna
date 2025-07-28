@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-def test_shop(driver):
+def test_shop():
     # Открываем сайт магазина
     driver = webdriver.Firefox()
     driver.get("https://www.saucedemo.com/")
@@ -18,11 +18,14 @@ def test_shop(driver):
 
     # Добавление товаров в корзину
     backpack_add_button = driver.find_element(
-        By.XPATH,"//div[@class='inventory_item' and .//div[contains(text(), 'Sauce Labs Backpack')]]//button")
+        By.XPATH, "//div[@class='inventory_item' and .//div[contains(text(), \
+            'Sauce Labs Backpack')]]//button")
     tshirt_add_button = driver.find_element(
-        By.XPATH,"//div[@class='inventory_item' and .//div[contains(text(), 'Sauce Labs Bolt T-Shirt')]]//button")
+        By.XPATH, "//div[@class='inventory_item' and .//div[contains(text(), \
+            'Sauce Labs Bolt T-Shirt')]]//button")
     onesie_add_button = driver.find_element(
-        By.XPATH,"//div[@class='inventory_item' and .//div[contains(text(), 'Sauce Labs Onesie')]]//button")
+        By.XPATH, "//div[@class='inventory_item' and .//div[contains(text(), \
+            'Sauce Labs Onesie')]]//button")
 
     backpack_add_button.click()
     tshirt_add_button.click()
@@ -41,12 +44,12 @@ def test_shop(driver):
     last_name_field = driver.find_element(By.ID, "last-name")
     postal_code_field = driver.find_element(By.ID, "postal-code")
 
-    first_name_field.send_keys("Татьяна")
-    last_name_field.send_keys("Турищева")
+    first_name_field.send_keys("Аполлинария")
+    last_name_field.send_keys("Коровкина")
     postal_code_field.send_keys("12345")
 
-    button = driver.find_element(By.CSS_SELECTOR, "button.radius")
-    button.click()
+    continue_button = driver.find_element(By.ID, "continue")
+    continue_button.click()
 
     # Чтение итоговой стоимости
     total_cost = driver.find_element(
@@ -54,8 +57,6 @@ def test_shop(driver):
     total_cost_value = float(total_cost.split("$")[1])
 
     # Проверка итоговой суммы
-    assert total_cost_value == 58.29,
-    f"Итоговая сумма должна быть 58.29, но получена {total_cost_value}"
+    assert total_cost_value == 58.29
 
-
-driver.quit()
+    driver.quit()

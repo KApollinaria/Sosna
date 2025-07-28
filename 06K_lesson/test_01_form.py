@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-def test_form(driver):
+def test_form():
     # Открытие страницы
     driver = webdriver.Firefox()
     driver.get(
@@ -23,16 +23,13 @@ def test_form(driver):
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 
     # Проверка подсветки поля Zip code
-    zip_code_input = driver.find_element(By.NAME, "zip")
-    assert "red" in zip_code_input.get_attribute(
-        'style'), "Поле Zip code не подсвечено красным"
+    pole_z = driver.find_element(By.ID, "zip-code").get_attribute("class")
+    assert pole_z == "alert py-2 alert-danger"
 
     # Проверка подсветки остальных полей
-    fields = ["firstName", "lastName", "address", "email", "phone", "city", "country", "job", "company"]
-    for field in fields:
-        element = driver.find_element(By.NAME, field)
-        assert "green" in element.get_attribute(
-            'style'), f"Поле {field} не подсвечено зелёным"
+    poles = ["firstName", "lastName", "address", "email", "phone", "city", "country", "job", "company"]
+    for pole in poles:
+        pole_class = driver.find_element(By.CSS_SELECTOR, pole).get_attribute("class")
+        assert pole_class == "alert py-2 alert-success"
 
-
-driver.quit()
+    driver.quit()

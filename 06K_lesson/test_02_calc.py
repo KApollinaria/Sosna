@@ -1,16 +1,10 @@
 from selenium import webdriver
-from selenium.webdriver.common.service import Service as ChromeService
-from webdriver_manager.common import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-driver = webdriver.Chrome(
-    service=ChromeService(ChromeDriverManager().install()))
-
-
-def test_calculator(driver):
+def test_calculator():
     driver = webdriver.Chrome()
     driver.get(
         "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
@@ -35,5 +29,4 @@ def test_calculator(driver):
     res = driver.find_element(By.CSS_SELECTOR, ".screen").text
     assert res == "15"
 
-
-driver.quit()
+    driver.quit()
