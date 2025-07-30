@@ -1,19 +1,20 @@
 import pytest
 from selenium import webdriver
-from form_page import Form
+from form_page import FormPage
 
 @pytest.fixture()
 def driver():
   driver = webdriver.Firefox()
+  driver.maximize_window()
   yield driver
   driver.quit()
 
 def test_form(driver):
-  driver.maximize_window()
   driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
-  form.first-name("Иван")
-  form.last-name("Петров")
-  form.address("Ленина, 55-3")
+  form = FormPage(driver)
+  form.form_for("Иван")
+  form.form_for("Петров")
+  form.form_for("Ленина, 55-3")
   form.e-mail("test@skypro.com")
   form.phone("+7985899998787")
   form.city("Москва")

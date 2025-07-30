@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class Calc:
+class CalcPage:
   def __init__(self, driver):
     self.driver = driver
     self.result_locator = (By.ID, "result")
@@ -15,7 +15,7 @@ class Calc:
     delay_input.send_keys(value)
 
   def click_button(self, button_text):
-    button = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button = self.driver.find_element(By.CSS_SELECTOR, "button[text()='{button_text}']")
     button.click()
 
   def get_calc_results(self):

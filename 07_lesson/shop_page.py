@@ -1,15 +1,17 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
-class Shop:
+class ShopPage:
   def __init__(self, driver):
     self.driver = driver
     self.search_box = (By.NAME, 'q')
     self.results_selector = (By.CSS_SELECTOR, 'div.g')
 
-  def shop_for(self, query):
-    enter_username = self.driver.find_element(By.CSS_SELECTOR, "button[type='{button_text}']")
+  def shop_for(self, button_text):
+    enter_username = self.driver.find_element(By.CSS_SELECTOR, "button[text()='{button_text}']")
     enter_password = self.driver.find_element(By.CSS_SELECTOR, "button[type='{button_text}']")
 
   def click_button(self, button_text):
